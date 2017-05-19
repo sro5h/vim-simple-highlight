@@ -1,38 +1,43 @@
 #! /bin/bash
-TAGS_FILE="tags"
-if [ -f ${TAGS_FILE} ]; then
+tagsFile="tags"
+if [ -f ${tagsFile} ]; then
     # Use the tags file
-    TAGS_LIST=$(cat ${TAGS_FILE})
+    tagsList=$(cat ${tagsFile})
 else
     # Parse with ctags
-    TAGS_LIST=$(ctags -R --c-kinds=cfst -o-)
+    tagsList=$(ctags -R --c-kinds=cfst -o-)
 fi
 
-TYPE_LIST="$(echo -n "${TAGS_LIST}" | awk -F "\t" '/^!/ {next} /^operator/ {next} {printf("%s,%s\n", $1, $4)}')"
+typeList="$(echo -n "${tagsList}" | awk -F "\t" '/^!/ {next} /^operator/ {next} {printf("%s,%s\n", $1, $4)}')"
+echo "${typeList}"
 
+cList=""
+fList=""
+sList=""
+tList=""
 # Determine the highlight group for each line
 while read -r line; do
-    KEYWORD="${line%,*}"
-    TYPE="${line#*,}"
-    HIGHLIGHT_GROUP=""
+    tagKeyword="${line%,*}"
+    tagType="${line#*,}"
+    highlightGroup=""
 
     # Uses the ctag kinds (ctags --list-kinds)
-    case "${TYPE}" in
+    case "${tagType}" in
         "c")
-            HIGHLIGHT_GROUP="Identifier";;
+            highlightGroup="Identifier"
+            cList="${cList}syntax keyword ${highlightGroup} ${tagKeyword}"$'\n';;
         "f")
-            HIGHLIGHT_GROUP="Function";;
+            highlightGroup="Function"
+            fList="${fList}syntax keyword ${highlightGroup} ${tagKeyword}"$'\n';;
         "s")
-            HIGHLIGHT_GROUP="Identifier";;
+            highlightGroup="Identifier"
+            sList="${sList}syntax keyword ${highlightGroup} ${tagKeyword}"$'\n';;
         "t")
-            HIGHLIGHT_GROUP="Identifier";;
+            highlightGroup="Identifier"
+            tList="${tList}syntax keyword ${highlightGroup} ${tagKeyword}"$'\n';;
         *)
-            HIGHLIGHT_GROUP="";;
+            highlightGroup="";;
     esac
+done <<< "${typeList}"
 
-    if [ ! -z "${HIGHLIGHT_GROUP}" ]; then
-        OUTPUT="${OUTPUT}syntax keyword ${HIGHLIGHT_GROUP} ${KEYWORD}"$'\n'
-    fi
-done <<< "${TYPE_LIST}"
-
-echo "${OUTPUT}"
+echo "${fList}${tList}${sList}${cList}"
