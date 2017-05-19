@@ -17,11 +17,11 @@ tList=""
 # Determine the highlight group for each line
 while read -r line; do
     tagKeyword="${line%,*}"
-    tagType="${line#*,}"
+    tagKind="${line#*,}"
     highlightGroup=""
 
     # Uses the ctag kinds (ctags --list-kinds)
-    case "${tagType}" in
+    case "${tagKind}" in
         "c")
             highlightGroup="Identifier"
             cList="${cList}syntax keyword ${highlightGroup} ${tagKeyword}"$'\n';;
