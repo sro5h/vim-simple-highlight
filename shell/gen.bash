@@ -9,7 +9,6 @@ else
 fi
 
 typeList="$(echo -n "${tagsList}" | awk -F "\t" '/^!/ {next} /^operator/ {next} {printf("%s,%s\n", $1, $4)}')"
-echo "${typeList}"
 
 cList=""
 fList=""
