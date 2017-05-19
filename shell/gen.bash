@@ -8,7 +8,7 @@ else
     TAGS_LIST=$(ctags -R --c-kinds=cfst -o-)
 fi
 
-TYPE_LIST="$(echo -n "${TAGS_LIST}" | awk -F "\t" '/!/ {next} {printf("%s,%s\n", $1, $4)}' | sort -t "," -k2 -r)"
+TYPE_LIST="$(echo -n "${TAGS_LIST}" | awk -F "\t" '/^!/ {next} /^operator/ {next} {printf("%s,%s\n", $1, $4)}')"
 
 # Determine the highlight group for each line
 while read -r line; do
