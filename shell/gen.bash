@@ -16,7 +16,7 @@ tList=""
 if [ -f ${tagsFile} ]; then
     tagsList=$(cat ${tagsFile})
 else
-    tagsList=$(ctags -R --c-kinds=cfst -o-)
+    tagsList=$(ctags -R -o-)
 fi
 
 # Convert the ctags output into a list only containing the the tag kind and
