@@ -1,6 +1,6 @@
 let s:script_path = expand('<sfile>:p:h:h')
 
-function! simplehighlight#HighlightTags()
+function! taglight#HighlightTags()
     let temp_file = tempname()
     let output = system(s:script_path . '/shell/gen.bash > ' . l:temp_file)
     execute "source " . l:temp_file
