@@ -49,7 +49,7 @@ fi
 if [ -f ${tagsFile} ]; then
         tagsList=$(cat ${tagsFile})
 else
-        exit 1;
+        exit 0;
 fi
 
 # Convert the ctags output into a list only containing the the tag kind and
