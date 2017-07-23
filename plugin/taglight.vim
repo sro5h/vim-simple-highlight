@@ -4,6 +4,6 @@
 " License: MIT License
 
 augroup Taglight
-    autocmd!
-    autocmd Syntax cpp call taglight#HighlightTags()
+        autocmd!
+        autocmd Syntax cpp call taglight#HighlightTags()
 augroup END
