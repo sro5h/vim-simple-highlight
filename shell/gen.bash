@@ -5,8 +5,7 @@
 
 # Global variables
 tagsFile="tags"
-ctagsCommand="ctags -R -o-"
-forceCtags=0
+tagsDir=""
 tagsList=""
 typeList=""
 cList=""
@@ -24,21 +23,17 @@ showUsage() {
 }
 
 # Parse arguments
-while getopts "hfc:d:" opt; do
+while getopts "hf:d:" opt; do
         case "${opt}" in
                 h)
                         showUsage
                         exit 0
                         ;;
                 f)
-                        forceCtags=1
-                        ;;
-                c)
-                        ctagsCommand="${OPTARG}"
+                        tagsFile="${OPTARG}"
                         ;;
                 d)
-                        workingDirectory="${OPTARG}"
-                        tagsFile="${workingDirectory}/${tagsFile}"
+                        tagsDir="${OPTARG}"
                         ;;
                 :|?)
                         exit 1
@@ -46,12 +41,15 @@ while getopts "hfc:d:" opt; do
         esac
 done
 
-# Use an existing tags file if found and forcing is disabled, otherwise invoke
-# ctags.
-if [ ${forceCtags} == 0 ] && [ -f ${tagsFile} ]; then
+if [ -n "${tagsDir}" ]; then
+        tagsFile="${tagsDir}/${tagsFile}"
+fi
+
+# Check whether the specified tags file exists.
+if [ -f ${tagsFile} ]; then
         tagsList=$(cat ${tagsFile})
 else
-        tagsList=$(${ctagsCommand})
+        exit 1;
 fi
 
 # Convert the ctags output into a list only containing the the tag kind and
