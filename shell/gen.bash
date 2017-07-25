@@ -8,10 +8,6 @@ tagsFile="tags"
 tagsDir=""
 tagsList=""
 typeList=""
-cList=""
-fList=""
-sList=""
-tList=""
 
 showUsage() {
         echo "Usage:"
@@ -45,9 +41,10 @@ if [ -n "${tagsDir}" ]; then
         tagsFile="${tagsDir}/${tagsFile}"
 fi
 
-# Check whether the specified tags file exists.
+# Check whether the specified tags file exists. If it exists sort it by the
+# fourth column (the tag kind) and store it in a variable.
 if [ -f ${tagsFile} ]; then
-        tagsList=$(cat ${tagsFile})
+        tagsList="$(cat ${tagsFile} | sort -k4 -t\	)"
 else
         exit 0;
 fi
