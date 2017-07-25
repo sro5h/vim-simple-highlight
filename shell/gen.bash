@@ -85,5 +85,8 @@ END {
 #   syntax keyword Identifier ExampleClass
 typeList="$(printf "%s" "${tagsList}" | awk -F "\t" "${awkProgram}")"
 
+# Remove duplicate lines.
+typeList="$(printf "%s" "${typeList}" | awk '!seen[$0]++')"
+
 # Output the vim syntax commands.
 printf "%s" "${typeList}"
