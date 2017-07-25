@@ -77,7 +77,7 @@ awkProgram='/^!/ { next } /^operator/ { next }
         }
 }
 END {
-        printf("%s%s%s%s", cList, fList, sList, tList);
+        printf("%s%s%s%s", fList, tList, sList, cList);
 }'
 
 # Runs the `${awkProgram}` to convert the tags file into vim syntax commands.
