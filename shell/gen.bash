@@ -5,7 +5,6 @@
 
 # Global variables
 tagsFile="tags"
-tagsDir=""
 tagsList=""
 typeList=""
 
@@ -13,9 +12,7 @@ showUsage() {
         echo "Usage:"
         echo "    gen.bash <options>"
         echo ""
-        echo "    -c [cmd]: The ctags command to run"
-        echo "    -d [dir]: The directory to search for the tags file"
-        echo "    -f:       Force to invoke ctags even if a tag file exists"
+        echo "    -f [file=tags]: The tags file to use"
 }
 
 # Parse arguments
@@ -28,18 +25,11 @@ while getopts "hf:d:" opt; do
                 f)
                         tagsFile="${OPTARG}"
                         ;;
-                d)
-                        tagsDir="${OPTARG}"
-                        ;;
                 :|?)
                         exit 1
                         ;;
         esac
 done
-
-if [ -n "${tagsDir}" ]; then
-        tagsFile="${tagsDir}/${tagsFile}"
-fi
 
 # Check whether the specified tags file exists. If it exists sort it by the
 # fourth column (the tag kind) and store it in a variable.

@@ -5,10 +5,11 @@
 " Get the path of the plugin root directory and the current working directory.
 let s:script_directory = expand('<sfile>:p:h:h')
 let s:working_directory = getcwd()
+let s:tags_file = "tags"
 
 " Set the 'g:taglight_arguments' variable if not done by the user.
 if !exists("g:taglight_arguments")
-        let g:taglight_arguments="-d " . s:working_directory
+        let g:taglight_arguments="-f " . s:working_directory . "/" . s:tags_file
 endif
 
 " Invokes the 'gen.bash' script and executes its output as vimscript. Also
