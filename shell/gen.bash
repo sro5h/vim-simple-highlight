@@ -43,8 +43,8 @@ fi
 
 # Check whether the specified tags file exists. If it exists sort it by the
 # fourth column (the tag kind) and store it in a variable.
-if [ -f ${tagsFile} ]; then
-        tagsList="$(cat ${tagsFile} | sort -k4 -t\	)"
+if [ -f "${tagsFile}" ]; then
+        tagsList="$(sort -k4 -t\	 "${tagsFile}")"
 else
         exit 0;
 fi
