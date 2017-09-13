@@ -36,5 +36,5 @@ function! taglight#HighlightTags() abort
         execute "source " . l:temp_file
 endfunction
 
-set cpo = s:cpo_save
+let &cpo = s:cpo_save
 unlet s:cpo_save
