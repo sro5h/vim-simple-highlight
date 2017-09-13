@@ -2,11 +2,10 @@
 " Author: Paul Meffle
 " License: MIT License
 
-" Don't load the script multiple times
-if exists('g:taglight_loaded')
+if exists('g:loaded_taglight')
         finish
 endif
-let g:taglight_loaded = 1
+let g:loaded_taglight = 1
 
 let s:cpo_save = &cpo
 set cpo&vim
