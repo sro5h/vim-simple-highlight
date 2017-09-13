@@ -2,6 +2,12 @@
 " Author: Paul Meffle
 " License: MIT License
 
+" Don't load the script multiple times
+if exists('g:taglight_loaded')
+        finish
+endif
+let g:taglight_loaded = 1
+
 " Get the path of the plugin root directory and the current working directory.
 let s:script_directory = expand('<sfile>:p:h:h')
 let s:working_directory = getcwd()
