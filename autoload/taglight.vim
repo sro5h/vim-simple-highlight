@@ -8,6 +8,9 @@ if exists('g:taglight_loaded')
 endif
 let g:taglight_loaded = 1
 
+let s:cpo_save = &cpo
+set cpo&vim
+
 " Get the path of the plugin root directory and the current working directory.
 let s:script_directory = expand('<sfile>:p:h:h')
 let s:working_directory = getcwd()
@@ -33,3 +36,6 @@ function! taglight#HighlightTags() abort
 
         execute "source " . l:temp_file
 endfunction
+
+set cpo = s:cpo_save
+unlet s:cpo_save
