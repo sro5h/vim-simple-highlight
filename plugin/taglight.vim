@@ -10,6 +10,11 @@
 " License:
 "     Zlib license
 
+if exists("g:loaded_taglight") || &cp
+        finish
+endif
+let g:loaded_taglight = 1
+
 augroup Taglight
         autocmd!
         autocmd Syntax cpp call taglight#HighlightTags()

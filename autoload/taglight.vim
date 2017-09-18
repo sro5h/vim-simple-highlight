@@ -15,13 +15,10 @@
 " License:
 "     Zlib license
 
-if exists('g:loaded_taglight')
+if exists('g:autoloaded_taglight')
         finish
 endif
-let g:loaded_taglight = 1
-
-let s:cpo_save = &cpo
-set cpo&vim
+let g:autoloaded_taglight = 1
 
 " Get the path of the plugin root directory and the current working directory.
 let s:script_directory = expand('<sfile>:p:h:h')
@@ -48,6 +45,3 @@ function! taglight#HighlightTags() abort
 
         execute "source " . l:temp_file
 endfunction
-
-let &cpo = s:cpo_save
-unlet s:cpo_save
