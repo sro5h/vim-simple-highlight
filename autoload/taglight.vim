@@ -45,3 +45,11 @@ function! taglight#HighlightTags() abort
 
         execute "source " . l:temp_file
 endfunction
+
+" Set some default highlight groups for tl*** highlights.
+function! taglight#DefaultHighlights() abort
+        highlight default link tlClass Identifier
+        highlight default link tlFunction Function
+        highlight default link tlStruct Identifier
+        highlight default link tlTypedef Identifier
+endfunction

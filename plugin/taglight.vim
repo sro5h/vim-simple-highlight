@@ -15,6 +15,8 @@ if exists("g:loaded_taglight") || &cp
 endif
 let g:loaded_taglight = 1
 
+call taglight#DefaultHighlights()
+
 augroup Taglight
         autocmd!
         autocmd Syntax cpp call taglight#HighlightTags()
