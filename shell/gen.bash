@@ -49,10 +49,10 @@ else
 fi
 
 # The variables holding the highlight group for each `kind`.
-hgC=Identifier
-hgF=Function
-hgS=Identifier
-hgT=Identifier
+hgC=tlClass
+hgF=tlFunction
+hgS=tlStruct
+hgT=tlTypedef
 
 # Converts the tags file into vim syntax commands. Lines starting with `!`
 # (comment) or `operator` (c++ operator) are ignored. For each language
