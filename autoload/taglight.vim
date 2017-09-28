@@ -1,5 +1,5 @@
 "
-" taglight.vim - 0.2.1
+" taglight.vim - 0.3.0
 "
 " Author:
 "     Paul Meffle
@@ -11,6 +11,7 @@
 "     0.1.0 (25.07.2017) initial release
 "     0.2.0 (25.07.2017) join -f and -d options
 "     0.2.1 (13.09.2017) cleanup and update documentation
+"     0.3.0 (28.09.2017) use custom highlight groups
 "
 " License:
 "     Zlib license
